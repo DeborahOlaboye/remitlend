@@ -243,6 +243,7 @@ impl RemittanceNFT {
         env.storage()
             .persistent()
             .remove(&DataKey::RemintApproval(user.clone()));
+        // Remove transfer cooldown to prevent stale cooldown on remint (fixes #461)
         env.storage()
             .persistent()
             .remove(&DataKey::TransferCooldown(user.clone()));
